@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+  <title>NUBA TeleTrainer</title>
+
+
+</head>
+
+<!-- This is a block comment 
+  Lorem Ipsum
+-->
+
+
+<!--<body style="background-color:#aaaaaa" -->
+<body>
+
+<h2 style="text-align:center">TeleTrainer NUBA </h2>
+
+<div id="header">
+<button  id="button" onclick="sendPulse()">Pulso</button>
+</div>
+
+<br>
+<br>
+
+<div id="browser">
+<iframe style="background-color:#aaaaaa" src="http://www.elcorteingles.com" width="1600" height="900"></iframe>
+</div>
+
+
+<style>
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#browser {
+    background-color:#ffffff;
+    text-align:center;
+    float:center;
+    padding:0px; 
+}
+#button {
+    width:240px;
+    height:100px;
+    font-size:60px;
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}
+</style>
+
+
+</body>
+
+<script>
+//This is a line comment (up to end of line)
+
+var HotDogUrl = "https://agent.electricimp.com/oWPb6DwEM9HS?button=1";
+
+function downScripts(pText) {
+    var element = document.createElement("p");
+    element.innerHTML  = pText;
+    document.body.appendChild(element);
+}
+
+
+var HttpClient = function() {
+    this.get = function(aUrl, aCallback) {
+        anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function() { 
+            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                aCallback(anHttpRequest.responseText);
+        }
+
+        anHttpRequest.open( "GET", aUrl, true );            
+        anHttpRequest.send( null );
+    }
+}
+
+var aClient = new HttpClient();
+
+
+function sendPulse(){
+    var HotDogUrl = "https://agent.electricimp.com/oWPb6DwEM9HS?button=1";
+    toRed();
+              
+    aClient.get(HotDogUrl, function(answer){
+        // do something with answer
+        //alert("QQ:" + "  " + answer);
+        toGreen();
+    });
+}
+
+function toRed(){
+    document.getElementById("header").style.backgroundColor = "#660000";
+}
+
+function toGreen(){
+    document.getElementById("header").style.backgroundColor = "#00ff00";
+    setTimeout(toOff, 500);	
+}
+
+function toOff(){
+    document.getElementById("header").style.backgroundColor = "#000000";
+}
+
+// Another one:
+function httpGet(theUrl){
+    var xmlHttp = null;
+
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false );
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+</script>
+
+</html>
