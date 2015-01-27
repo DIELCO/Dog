@@ -12,7 +12,7 @@
 
 
 <!--<body style="background-color:#aaaaaa" -->
-<body>
+<body onload="sendDummy()">
 
 <h2 style="text-align:center">TeleTrainer NUBA </h2>
 
@@ -34,12 +34,11 @@
   <tr>
     <td style="width:22%"></td>
     <td style="width:5%"><button  id="cameraButton" onclick="cameraUrlConfig()">Set Camera address</button></td>
-    <td style="width:30%"><p id="textUrl" style="text-align:left"></p></td> 
+    <td style="width:30%"><h2 id="textUrl" style="text-align:left"></h2></td> 
   </tr>
 </table>
 
 </div>
-
 
 
 <script>
@@ -48,9 +47,11 @@ document.getElementById("textUrl").innerHTML = cameraUrl;
 
 function cameraUrlConfig(){
   cameraUrl = prompt("Please, enter the camera URL");
+  if((cameraUrl != null) && (cameraUrl != "")){	
   document.getElementById("textUrl").innerHTML = cameraUrl;
   document.getElementById("browserFrame").src = cameraUrl;
   document.getElementById("browserFrame").contentDocument.location.reload(true);
+  }
 }
 </script>
 
@@ -71,6 +72,15 @@ function cameraUrlConfig(){
 }
 #button {
     width:240px;
+    height:100px;
+    font-size:60px;
+}
+#cameraButton {
+    width:300px;
+    height:50px;
+    font-size:20px;
+} {
+    width:200px;
     height:100px;
     font-size:60px;
 }
@@ -110,6 +120,16 @@ var HttpClient = function() {
 var aClient = new HttpClient();
 function sendPulse(){
     var HotDogUrl = "https://agent.electricimp.com/oWPb6DwEM9HS?button=1";
+    toRed();
+              
+    aClient.get(HotDogUrl, function(answer){
+        // do something with answer
+        //alert("QQ:" + "  " + answer);
+        toGreen();
+    });
+}
+function sendDummy(){
+    var HotDogUrl = "https://agent.electricimp.com/oWPb6DwEM9HS?dummy=1";
     toRed();
               
     aClient.get(HotDogUrl, function(answer){
