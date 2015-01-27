@@ -130,13 +130,13 @@ function sendPulse(){
 }
 function sendDummy(){
     var HotDogUrl = "https://agent.electricimp.com/oWPb6DwEM9HS?dummy=1";
-    toRed();
               
     aClient.get(HotDogUrl, function(answer){
         // do something with answer
         //alert("QQ:" + "  " + answer);
-        toGreen();
+        toBlue();
     });
+    setTimeout(sendDummy, 20000);
 }
 function toRed(){
     document.getElementById("header").style.backgroundColor = "#660000";
@@ -144,6 +144,10 @@ function toRed(){
 function toGreen(){
     document.getElementById("header").style.backgroundColor = "#00ff00";
     setTimeout(toOff, 500);	
+}
+function toBlue(){
+    document.getElementById("header").style.backgroundColor = "#0000ff";
+    setTimeout(toOff, 100);	
 }
 function toOff(){
     document.getElementById("header").style.backgroundColor = "#000000";
