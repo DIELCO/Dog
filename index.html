@@ -23,9 +23,37 @@
 <br>
 <br>
 
+
 <div id="browser">
-<iframe style="background-color:#aaaaaa" src="http://di5147.myfoscam.org:8090/" width="600" height="600"></iframe>
+<iframe id="browserFrame" style="background-color:#aaaaaa" src="http://di5147.myfoscam.org:9090/"   width="600" height="600"></iframe>
 </div>
+
+
+<div id="footer">
+<table style="width:100%">
+  <tr>
+    <td style="width:22%"></td>
+    <td style="width:5%"><button  id="cameraButton" onclick="cameraUrlConfig()">Set Camera address</button></td>
+    <td style="width:30%"><p id="textUrl" style="text-align:left"></p></td> 
+  </tr>
+</table>
+
+</div>
+
+
+
+<script>
+var cameraUrl = "http://di5147.myfoscam.org:9090/";
+document.getElementById("textUrl").innerHTML = cameraUrl;
+
+function cameraUrlConfig(){
+  cameraUrl = prompt("Please, enter the camera URL");
+  document.getElementById("textUrl").innerHTML = cameraUrl;
+  document.getElementById("browserFrame").src = cameraUrl;
+  document.getElementById("browserFrame").contentDocument.location.reload(true);
+}
+</script>
+
 
 
 <style>
@@ -50,8 +78,8 @@
     background-color:black;
     color:white;
     clear:both;
-    text-align:center;
-    padding:5px; 
+    text-align:left;
+    padding:2px; 
 }
 </style>
 
@@ -61,15 +89,13 @@
 <script>
 //This is a line comment (up to end of line)
 
-var HotDogUrl = "https://agent.electricimp.com/oWPb6DwEM9HS?button=1";
 
+var HotDogUrl = "https://agent.electricimp.com/oWPb6DwEM9HS?button=1";
 function downScripts(pText) {
     var element = document.createElement("p");
     element.innerHTML  = pText;
     document.body.appendChild(element);
 }
-
-
 var HttpClient = function() {
     this.get = function(aUrl, aCallback) {
         anHttpRequest = new XMLHttpRequest();
@@ -77,15 +103,11 @@ var HttpClient = function() {
             if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
                 aCallback(anHttpRequest.responseText);
         }
-
         anHttpRequest.open( "GET", aUrl, true );            
         anHttpRequest.send( null );
     }
 }
-
 var aClient = new HttpClient();
-
-
 function sendPulse(){
     var HotDogUrl = "https://agent.electricimp.com/oWPb6DwEM9HS?button=1";
     toRed();
@@ -96,30 +118,24 @@ function sendPulse(){
         toGreen();
     });
 }
-
 function toRed(){
     document.getElementById("header").style.backgroundColor = "#660000";
 }
-
 function toGreen(){
     document.getElementById("header").style.backgroundColor = "#00ff00";
     setTimeout(toOff, 500);	
 }
-
 function toOff(){
     document.getElementById("header").style.backgroundColor = "#000000";
 }
-
 // Another one:
 function httpGet(theUrl){
     var xmlHttp = null;
-
     xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false );
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
-
 </script>
 
 </html>
